@@ -1,0 +1,100 @@
+[
+  {
+    "cluster_id": 5,
+    "cluster_title": "Beach",
+    "title": "Beach Getaway",
+    "story": "You spent a relaxing day soaking up the sun on a beautiful beach surrounded by palm trees and white sand, taking in the breathtaking views of the Caribbean islands. You strolled along the wooden walkway, took in the aerial views, and enjoyed quality time with loved ones in Croatia.",
+    "size": 52
+  },
+  {
+    "cluster_id": 13,
+    "cluster_title": "River",
+    "title": "River Adventure",
+    "story": "You spent the day exploring the serene river, surrounded by lush greenery and tranquil waterfalls, and wandered through the woods, taking in the sights and sounds of nature. Along the way, you discovered hidden gems like moss-covered trees and fields of tall grass.",
+    "size": 8
+  },
+  {
+    "cluster_id": 1,
+    "cluster_title": "Phone",
+    "title": "Coffee Break",
+    "story": "You spent a relaxing morning working and reading over a cup of coffee, with your phone nearby to stay connected. The quiet atmosphere and warm beverage made for a perfect moment to unwind and focus.",
+    "size": 6
+  },
+  {
+    "cluster_id": 9,
+    "cluster_title": "Restaurant",
+    "title": "Night Out",
+    "story": "You spent a lovely evening at a cozy restaurant, surrounded by lush plants and delicious food. You shared a wonderful meal with someone special, toasting to good times and making memories together.",
+    "size": 48
+  },
+  {
+    "cluster_id": 0,
+    "cluster_title": "Together",
+    "title": "Family Gatherings",
+    "story": "You spent quality time with loved ones, sharing meals and making memories around the dinner table. From special occasions to everyday moments, these moments brought you closer together.",
+    "size": 17
+  },
+  {
+    "cluster_id": 6,
+    "cluster_title": "Beach",
+    "title": "Beach Day",
+    "story": "You spent a relaxing day at the beach, surrounded by loved ones and making memories with your family. From building sandcastles to taking leisurely walks along the shore, it was a day filled with joy and laughter.",
+    "size": 10
+  },
+  {
+    "cluster_id": 19,
+    "cluster_title": "Cake",
+    "title": "Birthday Celebration",
+    "story": "You spent the day surrounded by loved ones, celebrating a special birthday with cake, candles, and plenty of smiles. The memories of laughter and joyful moments with family and friends are truly unforgettable.",
+    "size": 5
+  },
+  {
+    "cluster_id": 16,
+    "cluster_title": "Throwing",
+    "title": "Graduation Day",
+    "story": "You spent the day celebrating with fellow graduates, throwing confetti and caps in the air to mark the special occasion. The joy and accomplishment were palpable as you held your diploma and took photos with friends.",
+    "size": 4
+  },
+  {
+    "cluster_id": 10,
+    "cluster_title": "Groom",
+    "title": "Beach Wedding",
+    "story": "You spent a beautiful day exchanging vows with your loved one on the beach, surrounded by friends and family, and celebrated with champagne toasts. You cherished every moment of this special day, from the ceremony to the joyful festivities that followed.",
+    "size": 3
+  },
+  {
+    "cluster_id": 14,
+    "cluster_title": "Airport",
+    "title": "Airport Visit",
+    "story": "You spent the day navigating through the bustling airport, watching planes take off and land, and waiting for your own flight. From the excitement of takeoff to the serenity of sunset on the runway, it was a journey to remember.",
+    "size": 48
+  },
+  {
+    "cluster_id": 20,
+    "cluster_title": "Arches",
+    "title": "Exploring Arches",
+    "story": "You spent the day wandering through grand buildings and discovering hidden gems, from impressive dinosaur skeletons to intricate arches and statues. You marveled at the beautiful architecture and historic artifacts that surrounded you.",
+    "size": 8
+  },
+  {
+    "cluster_id": 3,
+    "cluster_title": "Vatican",
+    "title": "Museum Tour",
+    "story": "You spent time exploring some of the world's most renowned museums, including a visit to the Vatican Museum in Rome. From London to Athens, you immersed yourself in art and history.",
+    "size": 4
+  },
+  {
+    "cluster_id": 12,
+    "cluster_title": "Museum",
+    "title": "Museum Visit",
+    "story": "You spent the day exploring a museum, taking in the stunning works of art on display and capturing memories with loved ones. From admiring large paintings to discovering intricate sculptures, you immersed yourself in the world of art and history.",
+    "size": 27
+  },
+  {
+    "cluster_id": 11,
+    "cluster_title": "Different",
+    "title": "Museum Visit",
+    "story": "You spent the day exploring a fascinating museum, wandering through rooms filled with diverse collections of glass, jewelry, and books. From gleaming vases to sparkling gems, you discovered something new around every corner.",
+    "size": 4
+  }
+]

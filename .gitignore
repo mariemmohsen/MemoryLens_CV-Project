@@ -1,0 +1,15 @@
+# Secrets - never commit API keys
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Large pretrained weights (re-download with: python -m utils.download_places365)
+models/*.pth.tar
+
+# Duplicate backup of the dataset
+data/original_download/
+
+# Local tooling
+.claude/
