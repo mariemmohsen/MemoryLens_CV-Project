@@ -10,6 +10,15 @@ training, and no manual labels.
 
 Built as a Computer Vision graduation project.
 
+## 🎥 Demo
+
+<!-- DROP-VIDEO-HERE:
+     Edit this file on github.com (pencil icon), delete this comment block,
+     and drag "Project demo.mp4" onto this line. GitHub uploads it and inserts
+     a player that plays inline in the README. -->
+
+_Demo video coming soon — see the steps in the section marker above._
+
 ## What it does
 
 | Step | Model / Technique | Output |
@@ -58,10 +67,7 @@ python -m event_clustering.run_clustering
 python -m timeline.run_timeline
 python -m story_generation.run_story_generation
 
-# optional: quantitative evaluation + ablation study
-python -m evaluation.run_evaluation
-python -m evaluation.ablation
-```
+
 
 Launch the app:
 
@@ -80,7 +86,6 @@ The UI can also add photos and re-run the whole pipeline itself
   pick an existing photo, or upload a new one; CLIP + FAISS find the moments
   that *feel* the same.
 - **➕ Add Photos & Reprocess** — run the full pipeline from the browser.
-- **✨ How It Works** — the pipeline explained.
 
 ## Design decisions worth knowing
 
