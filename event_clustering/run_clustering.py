@@ -29,6 +29,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 from config import (  # noqa: E402
     EMBEDDINGS_OUTPUT,
     EMBEDDINGS_FILENAMES_OUTPUT,
+    CAPTION_EMBEDDINGS_OUTPUT,
     SCENE_PREDICTIONS_OUTPUT,
     CAPTIONS_OUTPUT,
     CLUSTERS_OUTPUT,
@@ -36,9 +37,15 @@ from config import (  # noqa: E402
     EVENT_CLUSTERING_ALGORITHM,
     EVENT_CLUSTERING_DISTANCE_THRESHOLD,
     EVENT_CLUSTERING_MIN_CLUSTER_SIZE,
+    EVENT_CLUSTERING_AUTO_THRESHOLD,
+    EVENT_CLUSTERING_THRESHOLD_SWEEP,
 )
-from embeddings.clip_embedder import ClipEmbedder  # noqa: E402
-from event_clustering.event_clusterer import EventClusterer, NOISE_LABEL  # noqa: E402
+from event_clustering.embedding_fusion import caption_text_embeddings, fuse  # noqa: E402
+from event_clustering.event_clusterer import (  # noqa: E402
+    EventClusterer,
+    NOISE_LABEL,
+    select_threshold_by_silhouette,
+)
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
@@ -133,6 +140,7 @@ def run(
     output_path: Path = CLUSTERS_OUTPUT,
     distance_threshold: float = EVENT_CLUSTERING_DISTANCE_THRESHOLD,
     min_cluster_size: int = EVENT_CLUSTERING_MIN_CLUSTER_SIZE,
+    auto_threshold: bool = EVENT_CLUSTERING_AUTO_THRESHOLD,
 ) -> None:
     """Cluster every embedded image into events and save results as JSON.
 
@@ -145,6 +153,8 @@ def run(
         output_path: Where to write clusters.json.
         distance_threshold: Cosine distance above which clusters aren't merged.
         min_cluster_size: Smallest group of photos treated as its own event.
+        auto_threshold: If True, ignore `distance_threshold` and auto-select
+            one by maximizing the mean silhouette over a sweep.
     """
     if not embeddings_path.exists() or not filenames_path.exists():
         logger.error(
@@ -160,14 +170,19 @@ def run(
 
     if captions_by_filename:
         logger.info("Embedding captions to enrich clustering signal...")
-        embedder = ClipEmbedder(model_name=CLIP_MODEL_NAME)
-        captions = [captions_by_filename.get(name, "") for name in filenames]
-        text_embeddings = embedder.embed_texts(captions)
-        combined = image_embeddings + text_embeddings
-        embeddings = combined / np.linalg.norm(combined, axis=1, keepdims=True)
+        text_embeddings = caption_text_embeddings(
+            filenames, captions_by_filename, CLIP_MODEL_NAME, CAPTION_EMBEDDINGS_OUTPUT
+        )
+        embeddings = fuse(image_embeddings, text_embeddings)
     else:
         logger.warning("No captions found; clustering on image embeddings only.")
         embeddings = image_embeddings
+
+    if auto_threshold:
+        distance_threshold, sweep = select_threshold_by_silhouette(
+            embeddings, EVENT_CLUSTERING_THRESHOLD_SWEEP
+        )
+        logger.info("Auto-selected distance_threshold=%.3f (best mean silhouette)", distance_threshold)
 
     logger.info("Clustering %d images into events...", len(filenames))
     clusterer = EventClusterer(

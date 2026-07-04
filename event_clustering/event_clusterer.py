@@ -21,14 +21,56 @@ distinguishing signal that raw pixels alone don't carry.
 
 import logging
 from collections import Counter
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 import numpy as np
 from sklearn.cluster import AgglomerativeClustering
+from sklearn.metrics import silhouette_score
 
 logger = logging.getLogger(__name__)
 
 NOISE_LABEL = -1  # label for images too small/loose a group to count as an event
+
+
+def select_threshold_by_silhouette(
+    embeddings: np.ndarray,
+    thresholds: List[float],
+    linkage: str = "average",
+) -> Tuple[float, List[dict]]:
+    """Pick the Agglomerative distance threshold with the best mean silhouette.
+
+    This makes the clustering adaptive instead of relying on a single hardcoded
+    threshold: for each candidate we cluster (no min-size noise filtering, so
+    every point has a real assignment) and score the partition's silhouette in
+    cosine space. The threshold with the highest silhouette - among partitions
+    that actually have >=2 clusters and aren't degenerate - wins.
+
+    Args:
+        embeddings: (N, D) array to cluster.
+        thresholds: Candidate cosine-distance thresholds to try.
+        linkage: Agglomerative linkage strategy.
+
+    Returns:
+        (best_threshold, sweep) where sweep is a list of per-threshold records
+        {"threshold", "n_clusters", "silhouette"} for reporting/plotting.
+    """
+    sweep = []
+    best_threshold, best_score = thresholds[0], -np.inf
+    for threshold in thresholds:
+        labels = AgglomerativeClustering(
+            n_clusters=None, distance_threshold=threshold,
+            metric="cosine", linkage=linkage,
+        ).fit_predict(embeddings)
+        n_clusters = len(set(labels))
+
+        score = float("nan")
+        if 2 <= n_clusters < len(embeddings):
+            score = float(silhouette_score(embeddings, labels, metric="cosine"))
+            if score > best_score:
+                best_threshold, best_score = threshold, score
+
+        sweep.append({"threshold": threshold, "n_clusters": n_clusters, "silhouette": score})
+    return best_threshold, sweep
 
 
 class EventClusterer:

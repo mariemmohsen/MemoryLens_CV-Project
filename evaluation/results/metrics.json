@@ -1,0 +1,29 @@
+{
+  "dataset": {
+    "n_images": 290,
+    "n_labeled": 249,
+    "n_true_classes": 14
+  },
+  "clustering_intrinsic": {
+    "silhouette": 0.2965940237045288,
+    "davies_bouldin": 1.7324205365615748,
+    "calinski_harabasz": 14.746710808272598,
+    "n_clusters": 14,
+    "n_evaluated": 244
+  },
+  "clustering_extrinsic": {
+    "ari": 0.7592870699389928,
+    "nmi": 0.8010755085045457,
+    "homogeneity": 0.8277713070105178,
+    "completeness": 0.776047803839215,
+    "v_measure": 0.8010755085045456,
+    "purity": 0.8473895582329317,
+    "n_labeled": 249,
+    "n_true_classes": 14
+  },
+  "clustering_coverage": 0.8413793103448276,
+  "scene_recognition": {
+    "scene_top1_accuracy": 0.55,
+    "scene_images_evaluated": 200
+  }
+}

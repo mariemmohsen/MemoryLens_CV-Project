@@ -23,6 +23,11 @@ Built as a Computer Vision graduation project.
 | 7. Story generation | Llama-3.3-70B via Groq | `story_generation/stories.json` — a title + story per event |
 | 8. Web interface | Gradio | interactive Memory Book, search, and reprocessing |
 
+**Evaluation** (`evaluation/`): quantitative metrics (Silhouette, Davies–Bouldin,
+ARI, NMI, purity) against pseudo-ground-truth labels, plus an ablation study
+(image vs caption vs fused embeddings, threshold sweep, Agglomerative vs
+HDBSCAN) with plots. See [evaluation/RESULTS.md](evaluation/RESULTS.md).
+
 ## Quick start
 
 ```bash
@@ -52,6 +57,10 @@ python -m similarity_search.build_index
 python -m event_clustering.run_clustering
 python -m timeline.run_timeline
 python -m story_generation.run_story_generation
+
+# optional: quantitative evaluation + ablation study
+python -m evaluation.run_evaluation
+python -m evaluation.ablation
 ```
 
 Launch the app:
@@ -105,6 +114,7 @@ event_clustering/      # step 5
 timeline/              # step 6
 story_generation/      # step 7 - Groq / Llama
 ui/                    # step 8 - Gradio app
+evaluation/            # metrics, ablation study, RESULTS.md
 utils/                 # shared helpers + result visualizers
 outputs/               # generated visualizations (annotated photos, cluster grids)
 ```

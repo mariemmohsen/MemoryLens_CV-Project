@@ -1,0 +1,33 @@
+{
+  "best_fused_threshold_by_ari": 0.35,
+  "best_fused_ari": 0.8864437591386665,
+  "auto_selected_threshold_by_silhouette": 0.4,
+  "algorithm_comparison": {
+    "agglomerative": {
+      "n_clusters": 13,
+      "coverage": 0.9310344827586207,
+      "silhouette": 0.27294909954071045,
+      "davies_bouldin": 1.8016944090146025,
+      "ari": 0.8864437591386665,
+      "nmi": 0.8794708064036232,
+      "v_measure": 0.8794708064036232,
+      "purity": 0.8835341365461847,
+      "ari_events": 0.3120668206859783,
+      "nmi_events": 0.7156287799092863,
+      "purity_events": 0.5510204081632653
+    },
+    "hdbscan": {
+      "n_clusters": 10,
+      "coverage": 0.5862068965517241,
+      "silhouette": 0.3982171416282654,
+      "davies_bouldin": 1.3623204690883566,
+      "ari": 0.40152488911102047,
+      "nmi": 0.6161508321516945,
+      "v_measure": 0.6161508321516946,
+      "purity": 0.6987951807228916,
+      "ari_events": 0.2382570903215022,
+      "nmi_events": 0.5940163290184551,
+      "purity_events": 0.46938775510204084
+    }
+  }
+}

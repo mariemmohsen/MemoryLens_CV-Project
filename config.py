@@ -49,6 +49,8 @@ SIMILARITY_SEARCH_DIR = PROJECT_ROOT / "similarity_search"
 EVENT_CLUSTERING_DIR = PROJECT_ROOT / "event_clustering"
 TIMELINE_DIR = PROJECT_ROOT / "timeline"
 STORY_GENERATION_DIR = PROJECT_ROOT / "story_generation"
+EVALUATION_DIR = PROJECT_ROOT / "evaluation"
+EVALUATION_RESULTS_DIR = EVALUATION_DIR / "results"
 
 # ---------------------------------------------------------------------------
 # Embeddings (CLIP) settings
@@ -56,6 +58,7 @@ STORY_GENERATION_DIR = PROJECT_ROOT / "story_generation"
 CLIP_MODEL_NAME = "openai/clip-vit-base-patch32"
 EMBEDDINGS_OUTPUT = EMBEDDINGS_DIR / "embeddings.npy"
 EMBEDDINGS_FILENAMES_OUTPUT = EMBEDDINGS_DIR / "image_filenames.json"
+CAPTION_EMBEDDINGS_OUTPUT = EMBEDDINGS_DIR / "caption_embeddings.npy"  # cached CLIP text embeddings
 EMBEDDING_BATCH_SIZE = 32
 
 # ---------------------------------------------------------------------------
@@ -100,6 +103,12 @@ EVENT_CLUSTERING_ALGORITHM = "agglomerative"  # or "hdbscan" (the spec's origina
 EVENT_CLUSTERING_DISTANCE_THRESHOLD = 0.3  # cosine distance; lower = more, tighter clusters
 EVENT_CLUSTERING_MIN_CLUSTER_SIZE = 3  # smallest group of photos considered its own event
 
+# When True, run_clustering ignores the fixed threshold above and instead
+# auto-selects one by maximizing the mean silhouette score over a sweep
+# (addresses the "fixed threshold may not generalize" critique).
+EVENT_CLUSTERING_AUTO_THRESHOLD = False
+EVENT_CLUSTERING_THRESHOLD_SWEEP = [round(0.15 + 0.025 * i, 3) for i in range(17)]  # 0.15 .. 0.55
+
 # ---------------------------------------------------------------------------
 # Timeline Reconstruction settings
 #
@@ -125,6 +134,6 @@ STORY_CAPTIONS_PER_EVENT = 5  # how many sample captions to feed into the prompt
 for directory in (
     RAW_IMAGES_DIR, MODELS_DIR, EMBEDDINGS_DIR, SCENE_RECOGNITION_DIR,
     CAPTIONING_DIR, SIMILARITY_SEARCH_DIR, EVENT_CLUSTERING_DIR,
-    TIMELINE_DIR, STORY_GENERATION_DIR,
+    TIMELINE_DIR, STORY_GENERATION_DIR, EVALUATION_DIR, EVALUATION_RESULTS_DIR,
 ):
     directory.mkdir(parents=True, exist_ok=True)
