@@ -8,16 +8,10 @@ real-life events (birthdays, weddings, trips...), rebuilds a timeline, and
 writes a short narrative for every event — all with pretrained models, zero
 training, and no manual labels.
 
-Built as a Computer Vision graduation project.
 
 ## 🎥 Demo
 
-<!-- DROP-VIDEO-HERE:
-     Edit this file on github.com (pencil icon), delete this comment block,
-     and drag "Project demo.mp4" onto this line. GitHub uploads it and inserts
-     a player that plays inline in the README. -->
 
-_Demo video coming soon — see the steps in the section marker above._
 
 ## What it does
 
@@ -32,10 +26,7 @@ _Demo video coming soon — see the steps in the section marker above._
 | 7. Story generation | Llama-3.3-70B via Groq | `story_generation/stories.json` — a title + story per event |
 | 8. Web interface | Gradio | interactive Memory Book, search, and reprocessing |
 
-**Evaluation** (`evaluation/`): quantitative metrics (Silhouette, Davies–Bouldin,
-ARI, NMI, purity) against pseudo-ground-truth labels, plus an ablation study
-(image vs caption vs fused embeddings, threshold sweep, Agglomerative vs
-HDBSCAN) with plots. See [evaluation/RESULTS.md](evaluation/RESULTS.md).
+
 
 ## Quick start
 
@@ -129,4 +120,4 @@ outputs/               # generated visualizations (annotated photos, cluster gri
 Python · PyTorch · Hugging Face Transformers · FAISS · scikit-learn ·
 HDBSCAN · Gradio · Pillow · NumPy · Groq API (Llama-3.3-70B)
 
-Runs fully on CPU; no GPU required.
+
